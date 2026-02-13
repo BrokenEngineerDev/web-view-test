@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WebView Browser</string>
+    <string name="hint_enter_url">Enter URL or search</string>
+    <string name="button_go">GO</string>
+    <string name="default_url">https://www.google.com</string>
+</resources>
