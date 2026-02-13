@@ -7,36 +7,30 @@ import android.view.inputmethod.EditorInfo
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.example.webviewbrowser.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var webView: WebView
-    private lateinit var urlEditText: EditText
-    private lateinit var goButton: Button
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        // Initialize views
-        webView = findViewById(R.id.webView)
-        urlEditText = findViewById(R.id.urlEditText)
-        goButton = findViewById(R.id.goButton)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Configure WebView
         setupWebView()
 
         // Set up button click listener
-        goButton.setOnClickListener {
+        binding.goButton.setOnClickListener {
             loadUrl()
         }
 
         // Handle keyboard "Go" action
-        urlEditText.setOnEditorActionListener { _, actionId, event ->
+        binding.urlEditText.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_GO || 
                 (event?.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)) {
                 loadUrl()
@@ -45,6 +39,18 @@ class MainActivity : AppCompatActivity() {
                 false
             }
         }
+
+        // Handle back button press using OnBackPressedCallback
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (binding.webView.canGoBack()) {
+                    binding.webView.goBack()
+                } else {
+                    isEnabled = false
+                    onBackPressedDispatcher.onBackPressed()
+                }
+            }
+        })
 
         // Handle incoming intents (e.g., from external links)
         handleIntent(intent)
@@ -57,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupWebView() {
-        webView.apply {
+        binding.webView.apply {
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true
@@ -73,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
                     // Update URL in EditText when page finishes loading
-                    url?.let { urlEditText.setText(it) }
+                    url?.let { binding.urlEditText.setText(it) }
                 }
             }
 
@@ -83,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadUrl() {
-        var url = urlEditText.text.toString().trim()
+        var url = binding.urlEditText.text.toString().trim()
 
         if (url.isEmpty()) {
             Toast.makeText(this, "Please enter a URL", Toast.LENGTH_SHORT).show()
@@ -101,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        webView.loadUrl(url)
+        binding.webView.loadUrl(url)
     }
 
     private fun handleIntent(intent: Intent?) {
@@ -109,25 +115,17 @@ class MainActivity : AppCompatActivity() {
             if (Intent.ACTION_VIEW == it.action) {
                 val url = it.dataString
                 url?.let { urlString ->
-                    urlEditText.setText(urlString)
-                    webView.loadUrl(urlString)
+                    binding.urlEditText.setText(urlString)
+                    binding.webView.loadUrl(urlString)
                 }
             }
         }
 
         // Load default page if nothing else is loaded
-        if (webView.url == null) {
+        if (binding.webView.url == null) {
             val defaultUrl = getString(R.string.default_url)
-            urlEditText.setText(defaultUrl)
-            webView.loadUrl(defaultUrl)
-        }
-    }
-
-    override fun onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack()
-        } else {
-            super.onBackPressed()
+            binding.urlEditText.setText(defaultUrl)
+            binding.webView.loadUrl(defaultUrl)
         }
     }
 }
