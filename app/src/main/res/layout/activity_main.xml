@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:orientation="vertical">
 
-    <!-- Search Bar Container -->
+    <!-- Facebook Helius-style toolbar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        android:background="@color/facebook_blue"
         android:gravity="center_vertical">
 
         <EditText
@@ -21,8 +21,11 @@
             android:hint="@string/hint_enter_url"
             android:inputType="textUri"
             android:imeOptions="actionGo"
-            android:padding="12dp"
-            android:background="@android:drawable/edit_text"
+            android:padding="10dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="#999999"
+            android:textSize="14sp"
             android:layout_marginEnd="8dp"/>
 
         <Button
@@ -30,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_go"
-            android:minWidth="80dp"/>
+            android:minWidth="60dp"/>
 
         <Button
             android:id="@+id/linksButton"
@@ -38,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="@string/button_links"
             android:layout_marginStart="4dp"
-            android:minWidth="80dp"/>
+            android:minWidth="60dp"/>
     </LinearLayout>
 
     <!-- WebView -->

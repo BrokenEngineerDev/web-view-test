@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WebView Browser</string>
-    <string name="hint_enter_url">Enter URL or search</string>
+    <string name="app_name">Facebook Helius Browser</string>
+    <string name="hint_enter_url">Search or enter URL</string>
     <string name="button_go">GO</string>
     <string name="default_url">https://www.google.com</string>
     <string name="button_links">Links</string>
     <string name="saved_links_title">Saved Links</string>
     <string name="error_loading_links">Error loading links</string>
+    <string name="facebook_user_agent_suffix">[FBAN/FBAV;FBAV/460.0.0.0.0;FBBV/604170629;FBDV/Android;FBMD/WebView;FBSN/Android;FBSV/14;FBSS/1;FBID/phone;FBLC/en_US;FBOP/5]</string>
 </resources>

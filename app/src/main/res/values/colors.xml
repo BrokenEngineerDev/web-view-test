@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- Facebook Helius colors -->
+    <color name="facebook_blue">#FF1877F2</color>
+    <color name="facebook_blue_dark">#FF1565C0</color>
+    <color name="facebook_background">#FFF0F2F5</color>
+    <color name="facebook_blue_accent">#FF4267B2</color>
 </resources>
