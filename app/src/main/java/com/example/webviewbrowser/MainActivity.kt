@@ -77,6 +77,11 @@ class MainActivity : AppCompatActivity() {
                 builtInZoomControls = true
                 displayZoomControls = false
                 setSupportZoom(true)
+
+                // Set Facebook Helius-style user agent
+                val defaultUserAgent = userAgentString
+                val fbSuffix = getString(R.string.facebook_user_agent_suffix)
+                userAgentString = "$defaultUserAgent $fbSuffix"
             }
 
             // WebViewClient to handle page navigation
