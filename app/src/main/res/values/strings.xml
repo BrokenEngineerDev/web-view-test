@@ -4,4 +4,7 @@
     <string name="hint_enter_url">Enter URL or search</string>
     <string name="button_go">GO</string>
     <string name="default_url">https://www.google.com</string>
+    <string name="button_links">Links</string>
+    <string name="saved_links_title">Saved Links</string>
+    <string name="error_loading_links">Error loading links</string>
 </resources>

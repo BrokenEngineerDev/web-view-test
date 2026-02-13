@@ -29,6 +29,11 @@ class MainActivity : AppCompatActivity() {
             loadUrl()
         }
 
+        // Set up links button click listener
+        binding.linksButton.setOnClickListener {
+            startActivity(Intent(this, LinksActivity::class.java))
+        }
+
         // Handle keyboard "Go" action
         binding.urlEditText.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_GO || 

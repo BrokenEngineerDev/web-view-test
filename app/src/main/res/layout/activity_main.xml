@@ -31,6 +31,14 @@
             android:layout_height="wrap_content"
             android:text="@string/button_go"
             android:minWidth="80dp"/>
+
+        <Button
+            android:id="@+id/linksButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_links"
+            android:layout_marginStart="4dp"
+            android:minWidth="80dp"/>
     </LinearLayout>
 
     <!-- WebView -->
